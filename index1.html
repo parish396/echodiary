@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EchoDiary – Welcome</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="landing-container">
+    <div class="welcome-box">
+      <h1>Welcome to EchoDiary 📝</h1>
+      <p>Capture your thoughts, moods, and memories.</p>
+
+      <div class="features">
+        <div class="feature">✍️ Write Emotions</div>
+        <div class="feature">🖼️ Add Photos/Videos</div>
+        <div class="feature">📅 Track by Date</div>
+        <div class="feature">🔒 Private & Secure</div>
+        <div class="feature">🌙 Dark Mode</div>
+      </div>
+
+      <div class="buttons">
+        <a href="write.html" class="btn">Start Writing</a>
+        <a href="media.html" class="btn secondary">My Media</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    function startWriting() {
+      window.location.href = "write.html"; // Link to writing interface
+    }
+
+    function openMedia() {
+      window.location.href = "media.html"; // Link to media interface
+    }
+  </script>
+</body>
+</html>

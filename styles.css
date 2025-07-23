@@ -1,0 +1,90 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.landing-container {
+  background: url('./assets_task_01k0s8dfnje6nbrshnpdeqgvqy_1753194430_img_1.webp') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 2s ease-in;
+}
+
+.welcome-box {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  animation: slideUp 1.2s ease-in-out;
+  max-width: 400px;
+}
+
+.welcome-box h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #ffdd57;
+}
+
+.welcome-box p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: #eee;
+}
+
+.features {
+  margin-bottom: 30px;
+}
+
+.feature {
+  margin: 10px 0;
+  font-size: 1em;
+  animation: fadeIn 1.5s ease;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #ffdd57;
+  color: #222;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ffd000;
+  transform: scale(1.05);
+}
+
+.btn.secondary {
+  background-color: #6ec6ff;
+  color: #000;
+}
+
+.btn.secondary:hover {
+  background-color: #58b2ff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideUp {
+  from {transform: translateY(50px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}

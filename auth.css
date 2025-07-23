@@ -1,0 +1,82 @@
+/* Background Image */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Urbanist', sans-serif;
+  background: url("assets_task_01k0sc96mre1hv72g99gzg2q3x_1753198434_img_0.webp") no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Glass Form Container */
+.auth-container {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: dropIn 1s ease-in-out;
+}
+
+.form-box h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.form-box input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.form-box button {
+  margin-top: 15px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(to right, #f2709c, #ff9472);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.form-box button:hover {
+  transform: scale(1.05);
+}
+
+.toggle-text {
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.toggle-text span {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes dropIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Write Memory | EchoDiary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url('assets_task_01k0sabqt9eme9dwztbzs5dhxw_1753196428_img_2.webp') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      backdrop-filter: blur(2px);
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 2em;
+      background: rgba(0, 0, 0, 0.5);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-size: 1.2em;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      resize: vertical;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    button {
+      background-color: #ffb347;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffaa00;
+    }
+
+    .preview {
+      margin-top: 20px;
+    }
+
+    .preview img, .preview video {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>📝 Start Writing - EchoDiary</header>
+
+  <div class="container">
+    <textarea id="entryText" placeholder="Write your thoughts..."></textarea>
+    <input type="file" id="mediaInput" accept="image/*,video/*" />
+    <button onclick="saveEntry()">Save Entry</button>
+
+    <div class="preview" id="mediaPreview"></div>
+  </div>
+
+ <script>
+  const diaryForm = document.getElementById("diaryForm");
+
+  diaryForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const text = document.getElementById("diaryText").value.trim();
+    const fileInput = document.getElementById("mediaInput");
+    const file = fileInput.files[0];
+
+    let storedEntries = JSON.parse(localStorage.getItem("uploadedMedia")) || [];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        storedEntries.push({
+          text: text,
+          type: file.type,
+          url: reader.result
+        });
+        localStorage.setItem("uploadedMedia", JSON.stringify(storedEntries));
+        alert("Diary with media saved!");
+        diaryForm.reset();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // Save text-only diary entry
+      storedEntries.push({
+        text: text,
+        type: null,
+        url: null
+      });
+      localStorage.setItem("uploadedMedia", JSON.stringify(storedEntries));
+      alert("Diary saved!");
+      diaryForm.reset();
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Media & Diary - EchoDiary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url('assets_task_01k0sabqt9eme9dwztbzs5dhxw_1753196428_img_2.webp') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      backdrop-filter: blur(3px);
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 2.2em;
+      background: rgba(0, 0, 0, 0.6);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .entry {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .entry p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+
+    img, video {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    video {
+      max-height: 400px;
+    }
+
+    .diary-only {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-left: 4px solid #ffd369;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>📂 My Media & Diary</header>
+
+  <div class="container">
+    <div class="section-title">📜 All Diary Entries</div>
+    <div id="diaryEntries"></div>
+  </div>
+
+  <div class="container">
+    <div class="section-title">📸 Media with Diary</div>
+    <div id="mediaContainer"></div>
+  </div>
+
+  <script>
+    const mediaContainer = document.getElementById("mediaContainer");
+    const diaryContainer = document.getElementById("diaryEntries");
+
+    const mediaEntries = JSON.parse(localStorage.getItem('uploadedMedia')) || [];
+
+    // Show diary entries (even without media)
+    if (mediaEntries.length === 0) {
+      diaryContainer.innerHTML = "<p style='text-align:center;'>No diary entries yet.</p>";
+    } else {
+      mediaEntries.forEach(entry => {
+        if (entry.text && entry.text.trim() !== "") {
+          const div = document.createElement('div');
+          div.className = 'diary-only';
+          div.innerText = entry.text;
+          diaryContainer.appendChild(div);
+        }
+      });
+    }
+
+    // Show media + text (combined)
+    if (mediaEntries.length === 0) {
+      mediaContainer.innerHTML = "<p style='text-align:center;'>No media uploaded yet.</p>";
+    } else {
+      mediaEntries.forEach(entry => {
+        const div = document.createElement('div');
+        div.className = 'entry';
+
+        let content = '';
+
+        if (entry.text) {
+          content += `<p><strong>📖 Entry:</strong> ${entry.text}</p>`;
+        }
+
+        if (entry.type && entry.url) {
+          if (entry.type.startsWith("image")) {
+            content += `<img src="${entry.url}" alt="Image Entry" />`;
+          } else if (entry.type.startsWith("video")) {
+            content += `<video controls><source src="${entry.url}" type="${entry.type}"></video>`;
+          }
+        }
+
+        div.innerHTML = content;
+        mediaContainer.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
